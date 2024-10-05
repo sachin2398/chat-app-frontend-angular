@@ -1,0 +1,271 @@
+<div class="container mt-4 chat-room-container">
+  <!-- Top Header Section -->
+<!-- Top Header Section -->
+<div class="row align-items-center mb-3">
+  <div class="col-md-6 d-flex align-items-center">
+    <img src="{{ userInfo.pic }}" alt="Profile Picture" class="rounded-circle me-2" width="40" (click)="openProfileModal()">
+    <span class="fw-bold">{{ userInfo.name }}</span>
+  </div>
+  <div class="col-md-6 text-end">
+    <button class="btn btn-primary me-2" (click)="openGroupChatModal()">Create Group Chat</button>
+    
+    <!-- Notification bell icon with counter -->
+    <div class="notification-container position-relative d-inline-block me-2">
+      <i class="fas fa-bell" (click)="toggleNotificationDropdown()" style="cursor: pointer;"></i>
+      <span *ngIf="notifications.length > 0" class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+        {{ notifications.length }}
+      </span>
+
+      <!-- Notification dropdown -->
+      <div *ngIf="showNotifications" class="notification-dropdown position-absolute bg-white shadow rounded">
+        <ul class="list-group">
+          <li *ngFor="let notification of notifications" class="list-group-item notification-item" (click)="handleNotificationClick(notification)">
+            <div>
+              <strong class="notification-sender">{{ notification.sender.name }}</strong>
+              <span *ngIf="notification.chat.isGroupChat">
+                messaged the group <strong class="notification-chat-name">{{ notification.chat.chatName }}</strong>.
+              </span>
+              <span *ngIf="!notification.chat.isGroupChat">messaged you</span>
+            </div>
+            <small class="text-muted notification-content">{{ truncateContent(notification.content) }}</small>
+
+          </li>
+          
+          <li *ngIf="notifications.length === 0" class="list-group-item">No new notifications.</li>
+        </ul>
+        <button class="btn btn-link" (click)="clearNotifications()">Clear all</button>
+      </div>
+    </div>
+
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+
+
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+        <button type="button" class="close-btn" aria-label="Close" (click)="closeProfileModal()">
+          <i class="fas fa-times"></i> <!-- FontAwesome cross icon -->
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="userInfo.pic" alt="Profile Picture" class="img-fluid rounded-circle mb-3" width="200">
+        <h5>{{ userInfo.name }}</h5>
+        <p>{{ userInfo.email }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeProfileModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- /// till now today all part is working properlly -->
+
+<!-- Group Chat Modal  start here-->
+<div class="modal fade" id="groupChatModal" tabindex="-1" aria-labelledby="groupChatModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="groupChatModalLabel">Create Group Chat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="chatName" class="form-label">Chat Name</label>
+          <input type="text" class="form-control" [(ngModel)]="groupName" placeholder="Chat Name" />
+        </div>
+        <div class="mb-3">
+          <label for="searchGroupUsers" class="form-label">Add Users</label>
+          <input type="text" class="form-control" [(ngModel)]="groupUserQuery" placeholder="Search users to add" (input)="searchGroupUsers()" />
+        </div>
+        <ul class="list-group mb-3" *ngIf="groupUserResults.length">
+          <li class="list-group-item" *ngFor="let result of groupUserResults" (click)="addUserToGroup(result)">
+            <img src="{{ result.pic }}" alt="Profile Picture" class="rounded-circle me-2" width="30">{{ result.name }}
+          </li>
+        </ul>
+        <div *ngIf="groupUserResults.length === 0 && groupUserQuery">No users found</div>
+        
+        <h6>Selected Users:</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of groupUsers">
+            <span><img src="{{ user.pic }}" alt="Profile Picture" class="rounded-circle me-2" width="30">{{ user.name }}</span>
+            <button class="btn btn-sm btn-danger" (click)="removeUserFromGroup(user)">Remove</button>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createGroupChat()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // group chat model end here  -->
+
+  <div class="row">
+    <!-- Left Sidebar for Search and User List -->
+    <div class="col-md-4">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Search Users</h5>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search users..." [(ngModel)]="searchQuery" (ngModelChange)="searchUsers()" >
+            
+            <!-- <button class="btn btn-outline-primary" type="button" (click)="searchUsers()">Search</button> -->
+          </div>
+          <div *ngIf="noUsersFoundMessage" style="color: red;"> <!-- Display message if exists -->
+            {{ noUsersFoundMessage }}
+          </div>
+
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="searchResults.length > 0">Search Results</h6>
+          <ul class="list-group mb-3">
+            <li *ngFor="let user of searchResults" class="list-group-item list-group-item-action user-item" (click)="selectUser(user)">
+              <img [src]="user.pic || 'default-pic.png'" alt="User Profile Pic" class="rounded-circle me-2" width="30">
+              {{ user.name }}
+            </li>
+          </ul>
+        <!-- Previous Chats List -->
+<h6 class="card-subtitle mb-2 text-muted">Previous Chats</h6>
+<ul class="list-group previous-chats">
+  <li *ngFor="let chat of previousChats" 
+      class="list-group-item list-group-item-action previous-chat-item" 
+      (click)="selectPreviousChat(chat)">
+    <span *ngIf="chat.users && chat.users.length">{{ getChatUserName(chat) }}</span>
+  </li>
+</ul>
+      
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Chat Display Section -->
+     <!-- //eye code -->
+     <div class="col-md-8">
+      <div *ngIf="selectedChat" class="card shadow-sm chat-window-container">
+          <div class="card-header chat-header">
+              <h5 class="mb-0">{{ getChatUserName(selectedChat) }}</h5>
+              <!-- Eye Button to Open Modal -->
+              <button class="btn eye-button float-end" (click)="showModal()">
+                  <i class="fas fa-eye"></i> <!-- FontAwesome eye icon -->
+              </button>
+          </div>
+          <div class="card-body chat-window" #chatWindow>
+              <div *ngFor="let message of chats" class="message mb-3" 
+                  [ngClass]="{'sent-message': message.sender?._id === userInfo?._id, 
+                              'received-message': message.sender?._id !== userInfo?._id}">
+                  <div *ngIf="message.sender?._id !== userInfo?._id" class="message-left">
+                      <img *ngIf="message.sender?.pic" [src]="message.sender?.pic" alt="Sender Profile Picture" class="message-sender-pic">
+                      <div class="message-content received-message">
+                          <strong>{{ message.sender?.name }}</strong>
+                          <p>{{ message.content }}</p>
+                          <div class="timestamp">{{ message.createdAt | date: 'shortTime' }}</div>
+                      </div>
+                  </div>
+                  <div *ngIf="message.sender?._id === userInfo?._id" class="message-right">
+                      <div class="message-content sent-message">
+                          <strong>You</strong>
+                          <p>{{ message.content }}</p>
+                          <div class="timestamp">{{ message.createdAt | date: 'shortTime' }}</div>
+                      </div>
+                      <img *ngIf="message.sender?.pic" [src]="message.sender?.pic" alt="Sender Profile Picture" class="message-sender-pic">
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer chat-footer">
+            <div *ngIf="isTyping" class="typing-indicator animate__animated animate__fadeIn">
+              <i class="fas fa-circle"></i>
+              <i class="fas fa-circle"></i>
+              <i class="fas fa-circle"></i>
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-control rounded-pill" placeholder="Type a message..." [(ngModel)]="newMessage" (keydown)="handleKeyPress($event)" (input)="handleTyping()">
+              <button class="btn btn-primary ms-2" type="button" (click)="sendMessage()">Send</button>
+            </div>
+          </div>
+          
+      </div>
+      <div *ngIf="!selectedChat" class="alert alert-info text-center">
+          Select a user or a previous chat to start messaging.
+      </div>
+  </div>
+  
+  <!-- Modal Structure -->
+  <div class="modal custom-modal" [ngClass]="{'show': isModalOpen}" [ngStyle]="{'display': isModalOpen ? 'block' : 'none'}">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">{{ selectedChat?.isGroupChat ? selectedChat?.chatName || 'Group Details' : 'User Details' }}</h5>
+                <button type="button" class="btn-close" (click)="closeModal()">
+                      <i class="fas fa-times"></i> <!-- FontAwesome close icon -->
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- Show User Details if it's not a group chat -->
+                  <div *ngIf="selectedChat && !selectedChat.isGroupChat && selectedChat.users && selectedChat.users.length > 0">
+                    <!-- Find the other user in the chat -->
+                    <ng-container *ngFor="let user of selectedChat.users">
+                      <div *ngIf="user._id !== userInfo?._id">
+                        <img [src]="user.pic" alt="Sender Profile Picture" class="img-fluid rounded-circle mb-3">
+                        <h5>{{ user.name }}</h5>
+                        <p>{{ user.email }}</p>
+                      </div>
+                    </ng-container>
+                  </div>
+                  
+  
+                  <!-- Show Group Details if it's a group chat -->
+                  <div *ngIf="selectedChat?.isGroupChat">
+                      <ul class="list-group">
+                          <li *ngFor="let user of selectedChat?.users" class="list-group-item d-flex justify-content-between align-items-center">
+                              <strong [class.text-success]="user?._id === selectedChat?.groupAdmin?._id">{{ user?.name }}</strong>
+                              <button
+                              class="btn btn-danger btn-sm"
+                              *ngIf="user?._id !== selectedChat?.groupAdmin?._id"
+                              (click)="removeUserOrLeaveGroup(user)">
+                              <i class="fas fa-times"></i> <!-- FontAwesome close icon -->
+                            </button>
+                              <span *ngIf="user?._id === selectedChat?.groupAdmin?._id" class="badge bg-success ms-2">Group Admin</span>
+                          </li>
+                      </ul>
+                      <!-- Two Input Boxes -->
+                      <div class="mt-3">
+                          <input type="text" class="form-control mb-2" placeholder="Change group name (any user can change)" [(ngModel)]="groupName">
+                          <input
+                          type="text"
+                          class="form-control mb-2"
+                          placeholder="Add more users (only admin can add)"
+                          [(ngModel)]="addUserQuery"
+                          (input)="searchUsersToAdd()"
+                        />
+                        <div *ngIf="noUsersToAddFoundMessage" style="color: red;">
+                          
+                          {{ noUsersToAddFoundMessage }}
+                        </div>
+                        <!-- Display the search results for adding users -->
+<ul class="list-group mt-2">
+  <li
+    *ngFor="let user of addUserResults"
+    class="list-group-item d-flex justify-content-between align-items-center"
+    (click)="addUserToGroupEdit(user)"
+  >
+    {{ user.name }}
+    <button class="btn btn-primary btn-sm">Add</button>
+  </li>
+</ul>
+                          <button class="btn btn-primary me-2" type="button" (click)="updateGroup()">Update</button>
+                          <button class="btn btn-secondary" type="button" (click)="removeUserOrLeaveGroup(userInfo)">Leave Group</button>                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  </div>
+</div>

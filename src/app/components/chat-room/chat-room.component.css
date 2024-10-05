@@ -1,0 +1,853 @@
+/* General Styles */
+.chat-room-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 15px;
+}
+
+.chat-window {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #e9ecef;
+    padding: 10px;
+}
+
+/* Message Bubbles */
+.message {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 10px;
+}
+
+.sent-message {
+    justify-content: flex-end; /* Align sent messages to the right */
+}
+
+.sent-message .message-content {
+    background-color: #e7f3ff; /* Light blue for sent messages */
+    color: #000; /* Black text for sent messages */
+    padding: 10px;
+    border-radius: 15px; /* Rounded corners for sent messages */
+    max-width: 70%; /* Control bubble width */
+    margin-left: 10px; /* Space between picture and bubble */
+}
+
+/* Received Message Styles */
+.received-message {
+    justify-content: flex-start; /* Align received messages to the left */
+}
+
+.received-message .message-content {
+    background-color: #f0f2f5; /* Light gray for received messages */
+    color: #000; /* Black text for received messages */
+    padding: 10px;
+    border-radius: 15px; /* Rounded corners for received messages */
+    max-width: 70%; /* Control bubble width */
+    margin-right: 10px; /* Space between picture and bubble */
+}
+
+/* Aligning Sender and Receiver Pictures */
+.message-left, .message-right {
+    display: flex; /* Use flexbox for alignment */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Sender and Receiver Picture Styles */
+.message-sender-pic {
+    width: 30px; /* Set width to 30px */
+    height: 30px; /* Set height to 30px */
+    border-radius: 50%; /* Keep images circular */
+    margin: 0 10px; /* Margin between picture and message */
+}
+
+/* Timestamp Styling */
+.timestamp {
+    font-size: 0.7rem; /* Smaller font for timestamps */
+    color: #888; /* Gray color for better visibility */
+    margin-top: 5px;
+    text-align: right; /* Align timestamp text */
+}
+
+/* Button and Input Styles */
+input.form-control {
+    border-radius: 20px;
+}
+
+button.btn-primary {
+    border-radius: 20px;
+}
+
+.btn-outline-primary {
+    border-radius: 20px;
+}
+
+/* Additional Styles */
+.chat-footer {
+    padding: 10px;
+    background-color: #f1f3f4;
+}
+
+/* //EYE MODEL CSS  */
+/* Chat Window Styles */
+.chat-window-container {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .message {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .message-sender-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .sent-message {
+    justify-content: flex-end;
+  }
+  
+  .received-message {
+    justify-content: flex-start;
+  }
+  
+  .timestamp {
+    font-size: 0.75rem;
+    color: gray;
+  }
+  
+  /* Modal Styles */
+  /* Chat Window Styles */
+.chat-window-container {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .message {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .message-sender-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .sent-message {
+    justify-content: flex-end;
+  }
+  
+  .received-message {
+    justify-content: flex-start;
+  }
+  
+  .timestamp {
+    font-size: 0.75rem;
+    color: gray;
+  }
+  
+ /* Modal Styles */ 
+ /* Modal Styles  for sender message or group chat when we click on eye button*/
+.custom-modal .modal-content {
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff; /* White background for the modal */
+}
+
+.custom-modal .modal-header {
+    border-bottom: none; /* Remove border for a clean look */
+    display: flex;
+    justify-content: space-between; /* Space between title and close button */
+    align-items: center; /* Align items vertically */
+    padding: 15px; /* Padding for better spacing */
+}
+
+.custom-modal .modal-title {
+    font-size: 1.5rem; /* Larger title */
+    color: #333; /* Dark text color for better readability */
+}
+
+.custom-modal .btn-close {
+    background: transparent; /* Transparent background for close button */
+    border: none; /* Remove border */
+    font-size: 1.5rem; /* Increase size for better visibility */
+    color: #007bff; /* Facebook Messenger blue */
+}
+
+.eye-button {
+    background: #007bff; /* Facebook Messenger blue background */
+    border: none; /* Remove border */
+    color: #ffffff; /* White text for better visibility */
+    font-size: 1.25rem; /* Increase size for better visibility */
+    padding: 5px 10px; /* Add some padding */
+    border-radius: 5px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.eye-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Chat Window Styles */
+.chat-window {
+    max-height: 500px; /* Limit the height of the chat window */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #f0f0f0; /* Light gray background */
+    border-radius: 8px; /* Rounded corners for the chat window */
+    padding: 10px; /* Padding for better spacing */
+}
+
+.message {
+    display: flex;
+    align-items: flex-start; /* Align messages vertically */
+    margin-bottom: 10px; /* Space between messages */
+}
+
+.message-left, .message-right {
+    flex: 1;
+}
+
+.message-left {
+    margin-right: 10px; /* Space between left messages */
+}
+
+.message-right {
+    margin-left: 10px; /* Space between right messages */
+}
+
+.timestamp {
+    font-size: 0.8rem; /* Smaller font for timestamps */
+    color: #888; /* Gray color for timestamps */
+}
+
+/* List Group Styles */
+.list-group-item {
+    display: flex;
+    /* justify-content: space-between; */
+     /* Space between name and button */
+    align-items: center; /* Vertically center align */
+    padding: 10px; /* Padding for better spacing */
+    background-color: #ffffff; /* White background for list items */
+    border-radius: 5px; /* Rounded corners for list items */
+    margin-bottom: 5px; /* Space between list items */
+}
+
+/* Remove user button styles */
+.btn-danger {
+    margin-left: 10px; /* Space between the name and the button */
+    background-color: #dc3545; /* Bootstrap danger color */
+    border-color: #dc3545; /* Bootstrap danger border color */
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Facebook Messenger blue */
+    border-color: #007bff; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    border-color: #6c757d; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    color: white; /* White text */
+}
+
+/* Other button styles for better visibility */
+.btn-primary, .btn-secondary {
+    font-weight: bold; /* Bold text for buttons */
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+    .chat-window {
+        max-height: 300px; /* Adjust chat window height for smaller screens */
+    }
+
+    .custom-modal .modal-title {
+        font-size: 1.25rem; /* Smaller title for smaller screens */
+    }
+
+    .eye-button, .btn-close {
+        font-size: 1rem; /* Smaller icon sizes for smaller screens */
+    }
+}
+
+  /* // profile model css */
+
+  /* Profile modal specific styles */
+
+  /* Profile modal specific styles */
+#profileModal .modal-content {
+    background: #ffffff; /* White background for a clean look */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensures rounded corners are respected */
+}
+
+#profileModal .modal-header {
+    background-color: #0084ff; /* Messenger blue */
+    color: white;
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+#profileModal .modal-title {
+    font-weight: bold;
+    font-size: 2rem; /* Larger font size for title */
+}
+
+#profileModal .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem; /* Larger close button */
+    color: white;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#profileModal .close-btn:hover {
+    opacity: 1;
+}
+
+#profileModal .modal-body {
+    padding: 3rem; /* Increased padding for spacious feel */
+    text-align: center; /* Center align the content */
+}
+
+/* Center the profile picture and create an oval shape */
+#profileModal .modal-body img {
+    border: 5px solid #0084ff; /* Messenger blue border */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25); /* Stronger shadow for depth */
+    border-radius: 50%; /* Circular shape */
+    width: 120px; /* Set width */
+    height: 120px; /* Set height for circular shape */
+    transition: transform 0.3s ease; /* Smooth scale effect on hover */
+}
+
+#profileModal .modal-body img:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Styling for the user information section */
+#profileModal .user-info {
+    text-align: left; /* Align text to the left */
+    margin-top: 1rem; /* Space above user info */
+}
+
+#profileModal .modal-body h5 {
+    font-size: 1.5rem; /* Medium font size for name */
+    margin: 0; /* Remove default margin */
+    font-weight: 600; /* Bold font for the name */
+    color: #343a40; /* Darker color for contrast */
+}
+
+#profileModal .modal-body p {
+    font-size: 1rem; /* Standard font size for email */
+    color: #666666; /* Secondary text color */
+    margin-top: 0.5rem; /* Margin for spacing */
+}
+
+#profileModal .modal-footer {
+    background-color: #f1f1f1; /* Light background for footer */
+    border-top: none;
+    border-radius: 0 0 20px 20px; /* Rounded corners */
+    padding: 1rem 1.5rem;
+}
+
+#profileModal .btn-secondary {
+    background-color: #007bff; /* Blue button */
+    border: none;
+    border-radius: 50px; /* Rounded button */
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for hover effect */
+}
+
+#profileModal .btn-secondary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Add animation for the modal */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+  /* Profile picture hover effect */
+  img[alt="Profile Picture"] {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  img[alt="Profile Picture"]:hover {
+    transform: scale(1.1);
+  }
+  
+  /* typing indicator css */
+  .typing-indicator {
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+  }
+  
+  .typing-indicator i {
+    color: #007bff;
+    animation: blink 1.5s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  /* <!-- Modal Structure when we clickon eye button here we can see the profile of sender anfd group chat-display --> */
+/* Base styling for the modal */
+.custom-modal .modal-dialog {
+    max-width: 580px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .custom-modal .modal-content {
+    border-radius: 12px;
+    border: none;
+    background-color: #ffffff; /* Clean white background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Softer, modern shadow */
+    overflow: hidden;
+  }
+  
+  /* Smooth opening/closing animations */
+  .custom-modal.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .custom-modal .modal-dialog {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  
+  /* Header */
+  .custom-modal .modal-header {
+    padding: 1rem 1.5rem;
+    background-color: #4a90e2; /* Soft blue for a modern, professional feel */
+    color: #ffffff;
+    border-bottom: none;
+  }
+  
+  .custom-modal .modal-header .modal-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  
+  .custom-modal .modal-header .btn-close {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-modal .modal-header .btn-close:hover {
+    color: #ffcccb; /* Subtle hover effect for the close button */
+    transform: scale(1.1);
+  }
+  
+  /* Body styling */
+  .custom-modal .modal-body {
+    padding: 1.5rem;
+    text-align: center; /* Center text in the modal body */
+  }
+  
+  .custom-modal .modal-body img {
+    width: 100px; /* Increased size for better visibility */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #4a90e2; /* Border matching the header */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Soft shadow on the image */
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .custom-modal .modal-body img:hover {
+    transform: scale(1.05); /* Small hover effect for profile images */
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  .custom-modal .modal-body h5 {
+    font-weight: bold;
+    font-size: 1.5rem; /* Increased size for names */
+    color: #333333; /* Darker color for better contrast */
+    margin-bottom: 0.5rem;
+  }
+  
+  .custom-modal .modal-body p {
+    font-size: 1rem; /* Increased size for emails */
+    color: #777777; /* Softer gray for email */
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Group chat list */
+  .custom-modal .modal-body .list-group-item {
+    background-color: #f9f9f9; /* Soft background for list items */
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .custom-modal .modal-body .list-group-item:hover {
+    background-color: #eef3ff; /* Light hover background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Hover shadow effect */
+  }
+  
+  .custom-modal .modal-body .list-group-item strong {
+    font-size: 1.1rem;
+    color: #0052cc; /* Bright blue for names */
+  }
+  
+  /* Add button styles */
+  .custom-modal .modal-body .list-group-item button {
+    background-color: #c41d1d; /* Blue color for the add button */
+    color: #fff; /* White text for contrast */
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .custom-modal .modal-body .list-group-item button:hover {
+    background-color: #007aff; /* Brighter blue on hover */
+    transform: scale(1.05);
+  }
+  
+  /* Inputs and buttons */
+  .custom-modal input.form-control {
+    background-color: #f0f4fa;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-modal input.form-control:focus {
+    background-color: #e8f0fe;
+    box-shadow: 0 0 0 2px #c0d9ff;
+    border-color: #4a90e2;
+    outline: none;
+  }
+  
+  /* Primary button styles */
+  .custom-modal .btn-primary {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .custom-modal .btn-primary:hover {
+    background-color: #007aff; /* Brighter blue on hover */
+    transform: scale(1.02);
+  }
+  
+  .custom-modal .btn-secondary {
+    background-color: #f0f0f0;
+    color: #555;
+    border-radius: 5px;
+  }
+  
+  .custom-modal .btn-secondary:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .custom-modal .modal-dialog {
+      max-width: 90%;
+    }
+  
+    .custom-modal .modal-body img {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .custom-modal .modal-body h5 {
+      font-size: 1.3rem;
+    }
+  
+    .custom-modal .modal-body p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .custom-modal .modal-dialog {
+      max-width: 100%;
+      margin: 1rem;
+    }
+  
+    .custom-modal .modal-body img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .custom-modal .modal-body h5 {
+      font-size: 1.1rem;
+    }
+  
+    .custom-modal .modal-body p {
+      font-size: 0.85rem;
+    }
+  
+    .custom-modal .modal-header .modal-title {
+      font-size: 1.2rem;
+    }
+  
+    .custom-modal .modal-header {
+      padding: 0.75rem 1rem;
+    }
+  }
+  
+  /* // notification css  and header navbar css */
+  /* Notification Bell and Container */
+  
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-container i {
+  font-size: 24px;
+  color: #0078ff; /* Messenger blue for the bell */
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 4px 8px;
+  background-color: #ff3d41; /* Messenger-style red for notification count */
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Notification Dropdown Styling */
+.notification-dropdown {
+  width: 320px;
+  max-height: 400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  right: 0;
+  top: 30px;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 10px 0;
+  border: 1px solid #ddd;
+  display: none;
+}
+
+/* Notification List */
+.notification-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-dropdown ul li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.notification-dropdown ul li:hover {
+  background-color: #f7f7f7;
+}
+
+/* Notification Content */
+.notification-dropdown ul li .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.notification-dropdown ul li .notification-content {
+  flex-grow: 1;
+}
+
+.notification-dropdown ul li .notification-content strong {
+  color: #0078ff; /* Messenger blue for names */
+  font-weight: 600;
+}
+
+.notification-dropdown ul li .notification-content small {
+  display: block;
+  color: #666;
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+/* Clear Notifications Button */
+.clear-notifications-btn {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0078ff;
+  transition: color 0.2s ease;
+}
+
+.clear-notifications-btn:hover {
+  color: #0056b3;
+}
+
+/* Scrollbar Styling for Overflow */
+.notification-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
+/* Dropdown Display on Hover */
+.notification-container:hover .notification-dropdown {
+  display: block;
+}
+
+.notification-dropdown {
+  width: 300px; /* Adjust width as needed */
+  border-radius: 8px;
+  max-height: 300px; /* Set a maximum height */
+  overflow-y: auto; /* Enable scrolling */
+}
+
+.notification-item {
+  border: none; /* Remove borders */
+  padding: 10px; /* Add padding for better spacing */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.notification-item:hover {
+  background-color: #f0f0f0; /* Light background on hover */
+}
+
+.notification-sender {
+  color: #007bff; /* Attractive color for sender's name */
+  font-weight: bold; /* Make sender's name bold */
+}
+
+.notification-content {
+  color: #555; /* A softer color for notification content */
+}
+
+.notification-container {
+  position: relative;
+}
+
+.notification-container .badge {
+  top: 0; /* Adjust badge position if needed */
+}
+
+
+.notification-dropdown {
+  width: 300px; /* Adjust width as needed */
+  border-radius: 8px;
+  max-height: 300px; /* Set a maximum height */
+  overflow-y: auto; /* Enable scrolling */
+  z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+
+.notification-item {
+  border: none; /* Remove borders */
+  padding: 10px; /* Add padding for better spacing */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.notification-item:hover {
+  background-color: #e9ecef; /* Light background on hover */
+}
+
+.notification-sender {
+  color: #007bff; /* Bright blue for sender's name */
+  font-weight: bold; /* Make sender's name bold */
+}
+
+.notification-chat-name {
+  color: #28a745; /* Green for group chat names */
+  font-weight: bold; /* Make group chat name bold */
+}
+
+.notification-content {
+  color: #6c757d; /* Gray for notification content */
+  font-style: italic; /* Italic style for a unique touch */
+}
+
+.notification-container {
+  position: relative; /* Required for absolute positioning of the dropdown */
+}
+
+.notification-container .badge {
+  top: 0; /* Adjust badge position if needed */
+}
+
+.list-group-item {
+  cursor: pointer; /* Pointer cursor for clickable items */
+}
