@@ -1,27 +1,86 @@
-# ChatAppGt
+# 💬 Real-Time Chat Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+A full-stack real-time chat application built using **Angular**, **TypeScript**, **Node.js**, **Express.js**, and **Socket.IO/WebSockets**.
 
-## Development server
+This application allows users to communicate instantly through personal and group chats with real-time updates and typing indicators.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 🔐 Authentication
+- User Signup & Login
+- Secure authentication system
 
-## Build
+### 💬 One-to-One Chat
+- Real-time private messaging
+- Instant message delivery
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 👥 Group Chat
+- Create group chats
+- Add/remove group members
+- Change group name
+- Group admin controls
 
-## Running unit tests
+### ⚡ Real-Time Features
+- Live messaging using Socket.IO/WebSockets
+- Typing indicator
+- Instant updates without page refresh
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 🛠️ Admin Controls
+Only group admin can:
+- Add members
+- Remove members
+- Manage group settings
 
-## Running end-to-end tests
+### 🎨 UI Features
+- Responsive chat interface
+- User search functionality
+- Previous chats section
+- Clean and modern UI
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+# 🧑‍💻 Tech Stack
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Frontend
+- Angular
+- TypeScript
+- JavaScript
+- HTML5
+- CSS3
+- Bootstrap
+
+## Backend
+- Node.js
+- Express.js
+
+## Database
+- MongoDB
+
+## Real-Time Communication
+- Socket.IO
+- WebSockets
+
+---
+
+# 📸 Screenshots
+
+## Chat Dashboard
+- User search
+- Previous chats
+- Real-time messaging
+
+## Group Management
+- Add/remove users
+- Change group name
+- Admin controls
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/your-username/chat-app-frontend-angular.git
